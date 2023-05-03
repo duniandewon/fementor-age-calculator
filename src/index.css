@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins Extra Bold";
+  src: url("/fonts/Poppins-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins Extra Bold Italic";
+  src: url("/fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: hsl(0, 0%, 86%);
+}
