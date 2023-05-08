@@ -1,6 +1,6 @@
 import { Container, Display } from "./styled";
 
-import { useCalulateAge } from "../../hooks/useCalculateAge";
+import useCalulateAge from "../../hooks/useCalculateAge";
 
 const Results = () => {
   const { day, month, year } = useCalulateAge();

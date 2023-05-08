@@ -8,9 +8,9 @@ interface Props {
   name: string;
   value?: string | number | readonly string[];
   placeholder?: string;
-  error?: string;
+  error?: { message: string | undefined; touched: boolean | undefined };
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: FocusEvent<HTMLInputElement>) => void
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 const TextField = ({
@@ -21,23 +21,23 @@ const TextField = ({
   placeholder,
   error,
   onChange,
-  onBlur
+  onBlur,
 }: Props) => {
   return (
     <Container>
-      <Label htmlFor={id} error={!!error}>
+      <Label htmlFor={id} error={!!error?.message && error?.touched}>
         {label}
       </Label>
       <Input
         id={id}
         name={name}
         value={value}
-        error={!!error}
+        error={!!error?.message && error?.touched}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
       />
-      {error && <Error>{error}</Error>}
+      {error?.message && error.touched && <Error>{error.message}</Error>}
     </Container>
   );
 };

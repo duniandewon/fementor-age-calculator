@@ -7,6 +7,10 @@ import AgeCalculatorForm from "./components/AgeCalculatorForm";
 import theme from "./theme";
 import Results from "./components/Results";
 
+import CalculateAgeProvider from "./context/calculateAgeContext";
+
+
+
 const Container = styled.main`
   background-color: ${({ theme }) => theme.colors.neutral[100]};
   padding: 3rem 2rem 2rem;
@@ -22,13 +26,15 @@ const Container = styled.main`
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Container>
-        <AgeCalculatorForm />
-        <Results />
-      </Container>
-    </ThemeProvider>
+    <CalculateAgeProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Container>
+          <AgeCalculatorForm />
+          <Results />
+        </Container>
+      </ThemeProvider>
+    </CalculateAgeProvider>
   );
 }
 

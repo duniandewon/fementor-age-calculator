@@ -7,7 +7,7 @@ import Arrow from "../../icons/arrow";
 
 import { Button, Form, FormGroup } from "./styled";
 
-import { useCalulateAge } from "../../hooks/useCalculateAge";
+import useCalulateAge from "../../hooks/useCalculateAge";
 
 const AgeCalculatorForm = () => {
   const { calculateAge } = useCalulateAge();
@@ -25,19 +25,20 @@ const AgeCalculatorForm = () => {
       .required("Should not be empty"),
   });
 
-  const { values, errors, handleChange, handleBlur, handleSubmit } = useFormik<{
-    day: string;
-    month: string;
-    year: string;
-  }>({
-    initialValues: {
-      day: "",
-      month: "",
-      year: "",
-    },
-    onSubmit: calculateAge,
-    validationSchema,
-  });
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
+    useFormik<{
+      day: string;
+      month: string;
+      year: string;
+    }>({
+      initialValues: {
+        day: "",
+        month: "",
+        year: "",
+      },
+      onSubmit: calculateAge,
+      validationSchema,
+    });
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -48,7 +49,7 @@ const AgeCalculatorForm = () => {
           name="day"
           value={values.day}
           placeholder="dd"
-          error={errors.day}
+          error={{ message: errors.day, touched: touched.day }}
           onChange={handleChange}
           onBlur={handleBlur}
         />
@@ -57,7 +58,7 @@ const AgeCalculatorForm = () => {
           label="month"
           name="month"
           value={values.month}
-          error={errors.month}
+          error={{ message: errors.month, touched: touched.month }}
           placeholder="mm"
           onChange={handleChange}
           onBlur={handleBlur}
@@ -67,7 +68,7 @@ const AgeCalculatorForm = () => {
           label="year"
           name="year"
           value={values.year}
-          error={errors.year}
+          error={{ message: errors.year, touched: touched.year }}
           placeholder="yyyy"
           onChange={handleChange}
           onBlur={handleBlur}
