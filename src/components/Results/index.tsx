@@ -8,13 +8,13 @@ const Results = () => {
   return (
     <Container>
       <Display>
-        <span>{day || "- -"}</span> <span>years</span>
+        <span>{year || "- -"}</span> <span>years</span>
       </Display>
       <Display>
         <span>{month || "- -"}</span> <span>months</span>
       </Display>
       <Display>
-        <span>{year || "- -"}</span> <span>days</span>
+        <span>{day || "- -"}</span> <span>days</span>
       </Display>
     </Container>
   );
