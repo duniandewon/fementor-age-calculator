@@ -22,10 +22,8 @@ const CalculateAgeProvider = ({ children }: { children: ReactNode }) => {
   const [month, setMonth] = useState(0);
   const [year, setYear] = useState(0);
 
-  const months = useMemo(
-    () => [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-    []
-  );
+  const isLeapyear = (year:number) =>  year % 4 === 0 ||
+  (year % 100 === 0 && year % 400 === 0)
 
   const calculateAge = useCallback(
     ({
@@ -37,6 +35,7 @@ const CalculateAgeProvider = ({ children }: { children: ReactNode }) => {
       month: string;
       year: string;
     }) => {
+
       const today = new Date();
 
       const date = new Date(`${Month}/${Day}/${Year}`);
@@ -49,12 +48,11 @@ const CalculateAgeProvider = ({ children }: { children: ReactNode }) => {
       const currentMonth = today.getMonth() + 1;
       const currentYear = today.getFullYear();
 
-      if (
-        currentYear % 4 === 0 ||
-        (currentYear % 100 === 0 && currentYear % 400 === 0)
-      )
-        months[1] = 29;
+      const months = [31, isLeapyear(currentYear) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
+      if (
+        isLeapyear(currentYear)
+      )
       setYear(currentYear - birthYear);
 
       if (currentMonth >= birthMonth) {
@@ -76,7 +74,7 @@ const CalculateAgeProvider = ({ children }: { children: ReactNode }) => {
         }
       }
     },
-    [months]
+    []
   );
 
   const values = useMemo(
